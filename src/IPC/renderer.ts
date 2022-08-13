@@ -1,11 +1,14 @@
-import { SystemInfo, IsWindows, NameAPI } from "./interfaces";
+import { SystemInfo, IsWindows, NameAPI, DefaultApiKey } from "./interfaces";
 
 const nameAPI: NameAPI = "systemInfo";
+const defaultApiKey: DefaultApiKey = "ipc";
 
-const getSystemInfo = async (
-  callback?: (arg0: SystemInfo) => void,
-  apiKey = "ipc"
-): Promise<SystemInfo> => {
+const getSystemInfo = async (options: {
+  callback?: (arg0: SystemInfo) => void;
+  apiKey?: string;
+}): Promise<SystemInfo> => {
+  const { callback } = options;
+  const apiKey = options?.apiKey || defaultApiKey;
   const api = globalThis[apiKey as keyof typeof globalThis][nameAPI];
 
   return new Promise((resolve) => {
@@ -19,19 +22,25 @@ const getSystemInfo = async (
   });
 };
 
-const requestSystemInfo = async (
-  callback?: (arg0: SystemInfo) => void,
-  apiKey = "ipc"
-): Promise<SystemInfo> => {
+const requestSystemInfo = async (options: {
+  callback?: (arg0: SystemInfo) => void;
+  apiKey?: string;
+}): Promise<SystemInfo> => {
+  const { callback } = options;
+  const apiKey = options?.apiKey || defaultApiKey;
   const api = globalThis[apiKey as keyof typeof globalThis][nameAPI];
+
   api.send("requestSystemInfo", null);
-  return getSystemInfo(callback);
+
+  return getSystemInfo({ callback, apiKey });
 };
 
-const getIsWindows = async (
-  callback?: (arg0: IsWindows) => void,
-  apiKey = "ipc"
-): Promise<IsWindows> => {
+const getIsWindows = async (options: {
+  callback?: (arg0: IsWindows) => void;
+  apiKey?: string;
+}): Promise<IsWindows> => {
+  const { callback } = options;
+  const apiKey = options?.apiKey || defaultApiKey;
   const api = globalThis[apiKey as keyof typeof globalThis][nameAPI];
 
   return new Promise((resolve) => {
@@ -45,13 +54,16 @@ const getIsWindows = async (
   });
 };
 
-const requestIsWindows = async (
-  callback?: (arg0: IsWindows) => void,
-  apiKey = "ipc"
-): Promise<IsWindows> => {
+const requestIsWindows = async (options: {
+  callback?: (arg0: IsWindows) => void;
+  apiKey?: string;
+}): Promise<IsWindows> => {
+  const { callback } = options;
+  const apiKey = options?.apiKey || defaultApiKey;
   const api = globalThis[apiKey as keyof typeof globalThis][nameAPI];
+
   api.send("requestIsWindows", null);
-  return getIsWindows(callback);
+  return getIsWindows({ callback, apiKey });
 };
 
 const systemInfo = {

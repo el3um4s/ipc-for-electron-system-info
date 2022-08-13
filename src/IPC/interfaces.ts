@@ -10,3 +10,4 @@ export interface IsWindows {
 }
 
 export type NameAPI = "systemInfo";
+export type DefaultApiKey = "ipc";
