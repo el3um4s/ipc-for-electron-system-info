@@ -66,7 +66,7 @@ const requestIsWindows = async (options: {
   return getIsWindows({ callback, apiKey });
 };
 
-const systemInfo = {
+const renderer = {
   requestSystemInfo,
   requestIsWindows,
   on: {
@@ -75,4 +75,4 @@ const systemInfo = {
   },
 };
 
-export default systemInfo;
+export default renderer;
