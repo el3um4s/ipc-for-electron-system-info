@@ -1,6 +1,7 @@
 import { app } from "electron";
+import { SystemInfo, IsWindows } from "./interfaces";
 
-const version = () => {
+const version = (): SystemInfo => {
   const versionChrome = process.versions.chrome;
   const versionNode = process.versions.node;
   const versionElectron = process.versions.electron;
@@ -15,7 +16,7 @@ const version = () => {
   };
 };
 
-const isWindows = () => {
+const isWindows = (): IsWindows => {
   return { isWindows: process.platform === "win32" };
 };
 

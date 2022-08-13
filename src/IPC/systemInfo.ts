@@ -4,7 +4,9 @@ import { version, isWindows } from "./utilities";
 
 import { BrowserWindow } from "electron";
 
-const nameAPI = "systemInfo";
+import { NameAPI } from "./interfaces";
+
+const nameAPI: NameAPI = "systemInfo";
 
 // to Main
 const validSendChannel: SendChannels = {
