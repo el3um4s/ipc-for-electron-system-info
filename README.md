@@ -4,31 +4,31 @@ Allow the renderer to get information about the version of Electron, Chrome and 
 
 NPM link: [@el3um4s/ipc-for-electron-system-info](https://www.npmjs.com/package/@el3um4s/ipc-for-electron-system-info)
 
-Use [@el3um4s/ipc-for-electron](https://www.npmjs.com/package/@el3um4s/ipc-for-electron) to allow communication between Electron and a web page
+Use [@el3um4s/ipc-for-electron](https://www.npmjs.com/package/@el3um4s/ipc-for-electron) and [@el3um4s/renderer-for-electron-system-info](https://www.npmjs.com/package/@el3um4s/renderer-for-electron-system-info) to allow communication between Electron and a web page
 
 ### Install and use the package
 
 To use the package in a project:
 
 ```bash
-npm i @el3um4s/ipc-for-electron-system-info @el3um4s/ipc-for-electron
+npm i @el3um4s/ipc-for-electron @el3um4s/ipc-for-electron-system-info @el3um4s/renderer-for-electron-system-info
 ```
 
 Then the `preload.ts` file:
 
 ```ts
 import { generateContextBridge } from "@el3um4s/ipc-for-electron";
-import { systemInfo } from "@el3um4s/ipc-for-electron-system-info";
+import systemInfo from "@el3um4s/ipc-for-electron-system-info";
 
 const listAPI = [systemInfo];
 
 generateContextBridge(listAPI);
 ```
 
-From the renderer file:
+In the renderer file:
 
 ```ts
-import { renderer as systemInfo } from "@el3um4s/ipc-for-electron-system-info";
+import systemInfo from "@el3um4s/renderer-for-electron-system-info";
 let isWindows = false;
 
 systemInfo.requestIsWindows({
@@ -52,7 +52,7 @@ systemInfo.requestSystemInfo({
 });
 ```
 
-From the renderer you can use:
+In the renderer you can use:
 
 ```ts
 let isWindows = false;
@@ -88,7 +88,7 @@ globalThis.api.systemInfo.receive("getSystemInfo", (data) => {
 example:
 
 ```ts
-import { renderer as systemInfo } from "@el3um4s/ipc-for-electron-system-info";
+import systemInfo from "@el3um4s/renderer-for-electron-system-info";
 
 let app: string = "-";
 let chrome: string = "-";
@@ -112,7 +112,7 @@ systemInfo.requestSystemInfo({
 example:
 
 ```ts
-import { renderer as systemInfo } from "@el3um4s/ipc-for-electron-system-info";
+import systemInfo from "@el3um4s/renderer-for-electron-system-info";
 
 let isWindows = false;
 
@@ -132,7 +132,7 @@ systemInfo.requestIsWindows({
 example:
 
 ```ts
-import { renderer as systemInfo } from "@el3um4s/ipc-for-electron-system-info";
+import systemInfo from "@el3um4s/renderer-for-electron-system-info";
 
 let app: string = "-";
 let chrome: string = "-";
@@ -157,7 +157,7 @@ systemInfo.on.getSystemInfo({
 example:
 
 ```ts
-import { renderer as systemInfo } from "@el3um4s/ipc-for-electron-system-info";
+import systemInfo from "@el3um4s/renderer-for-electron-system-info";
 
 let isWindows = false;
 
