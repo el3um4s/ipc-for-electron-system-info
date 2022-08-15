@@ -1,6 +1,6 @@
 {
   "name": "@el3um4s/ipc-for-electron-system-info",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Allow the renderer to get information about the version of Electron, Chrome and NodeJS used",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
